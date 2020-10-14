@@ -4,7 +4,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: 'Vuepress Docs Boilerplate',
+  title: 'Workshop: Start-to-Code',
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
@@ -34,26 +34,19 @@ module.exports = {
     lastUpdated: false,
     nav: [
       {
-        text: 'Guide',
-        link: '/guide/',
+        text: 'Manual',
+        link: '/manual/',
       },
-      {
-        text: 'Config',
-        link: '/config/'
-      },
-      {
-        text: 'VuePress',
-        link: 'https://v1.vuepress.vuejs.org'
-      }
     ],
     sidebar: {
-      '/guide/': [
+      '/manual/': [
         {
-          title: 'Guide',
+          title: 'Manual',
           collapsable: false,
           children: [
             '',
-            'first-code',
+            'first-steps',
+            'weather-station'
           ]
         }
       ],
