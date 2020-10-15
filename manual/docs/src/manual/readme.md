@@ -1,6 +1,6 @@
 # Introduction
 
-## Simple code 🤙
+## Simple code
 
 Code is voor velen een onderwerp waar men bang van word. Het ziet er vrij complex uit maar met ietwat inhoud kan code eenvoudig worden. Het lijkt me dan ook voordehands liggend dat we code gaan **vergelijken met situaties in het werkelijk leven**. Alle begrippen rond code moeten zorgvuldig worden uitgelegd voordat we deze kunnen toepassen. 
 
@@ -10,7 +10,7 @@ Programmeren is natuurlijk **niet verbonden tot één medium**. Webdevelopment l
 
 We willen ervoor zorgen dat we met deze workshop studenten **goesting laten krijgen in code!** En hoe kan dat dan beter door een indrukwekkend projectje te maken?
 
-## Goals 🏅
+## Goals
 
 Het doel is dus om **mensen geïnteresseerd te krijgen in programmeren**. We moeten dus kijken om een project te maken waarbij mensen gestimuleerd worden om dit met project met volle goesting te volbrengen en daarnaast om zich in de toekomst te verdiepen. Als we onszelf doelen mogen stellen, dan zijn dat de volgende:
 
@@ -19,7 +19,7 @@ Het doel is dus om **mensen geïnteresseerd te krijgen in programmeren**. We moe
 - Kunnen begrijpen wat de code doet
 - Kunnen begrijpen waarvoor verschillende technologiën gebruikt worden
 
-## Main purpose 🦾
+## Main purpose
 
 We starten met inwerken. We gaan micro:bit gaan verkennen door enkele animaties te maken, de naam te laten verschijnen, ...
 
@@ -38,7 +38,7 @@ Hieronder kan je al wat proeven van hoe het project er zal uitzien:
 
 ![alt text](https://focus.knack.be/medias/18801/9626177.jpg "Frank Deboosere - VRT")
 
-## What's needed 🤲
+## What's needed
 
 We kunnen dit natuurlijk niet maken zonder enkele **handige technologieën**. Dit zowel fysiek als digitaal. Hieronder maken we een korte samenvatting van de nodige verplichtingen. Laten we starten met de digitale benodigdheden.
 
@@ -70,6 +70,12 @@ Wij kiezen voor **Visual Studio Code**. Visual Studio Code is een code-editor ge
 [Klik hier om meer te weten te komen over Visual Studio Code of om het te installeren](https://code.visualstudio.com/)
 
 #### Mu
+
+Daarnaast moeten we voor de micro:bit ook gebruik maken van de Mu editor. Deze editor is zeer eenvoudig en gemaakt voor de beginnende programmeur. Het is beknopt en doet wat het moet doen. Handig hier is dat de code die opgeslagen word, direct gecompileerd en verstuurd word naar de micro:bit.
+
+![alt text](https://codewith.mu/img/en/mu.gif "Mu editor")
+
+[Klik hier om meer te weten te komen over Mu of om het te installeren](https://codewith.mu/)
 
 #### Python
 

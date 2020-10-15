@@ -14,9 +14,9 @@ De benodigheden:
 - OpenWeatherMap API
 - Flask Webserver
 
-De GitHub-repo vind je terug via deze link.
+De GitHub-repo vind je terug via [deze link.](https://github.com/jensderyckere/weatherstation).
 
-## Set-up op de Pi
+## Code on the pi
 
 We gaan aan de slag met de volgende aangekregen **folder-structuur**:
 
@@ -44,6 +44,15 @@ from geopy.geocoders import Nominatim
 
 ## Beveiligde waarden kunnen we hiermee ophalen in dit bestand
 from dotenv import load_dotenv
+
+# Onze webserver
+from flask import Flask, render_template
+
+# Data leesbaar gaan maken
+import json
+
+# Versturen van micro:bit data naar onze computer/pi
+import serial, time
 ```
 
 We gaan binnen de **.env** bestand onze waarden gaan definiëren die we niet zichtbaar willen maken aan anderen. Denk maar aan je locatie, een API-key, ... Dit zijn gegevens die jouw privacy kunnen schaden of jouw project kunnen verstoren als deze zichtbaar zijn. Better be carefull!
@@ -93,6 +102,15 @@ geolocator = Nominatim(user_agent=geo_user)
 location = geolocator.geocode(geo_loc)
 ```
 
+We moeten natuurlijk ook de data verkrijgen van onze **micro:bit**. We halen de temperatuur op via onderstaande configuratie. Deze noteren we ook in de app.py.
+
+```python
+port = "/dev/ttyACM0"
+baud = 115200
+s = serial.Serial(port)
+s.baudrate = baud
+```
+
 En nu is het tijd voor het opzetten van een Flask server. Dit is een webserver waardoor we een eigen website lokaal kunnen maken. Deze website zal een dashboard voorstellen van verschillende waarden. We tonen het huidig weer en ook een voorspelling voor de komende dagen. In de code word alle toepassingen grondig uitgelegd:
 
 ```python
@@ -112,13 +130,56 @@ def index():
     # De voorspelling
     forecast = data['daily']
 
-    # het huidig weer
+    # Het huidig weer
     current = data['current']
 
-    # We zenden deze waarden naar de webpagina
-    return render_template('index.html', forecast=forecast, current=current)
+    while True:
+        # Verkrijg de indoor data
+        indoor = s.readline()
+        indoor = int(indoor[0:4])
+
+        # Toon onze website binnen de webserver en verstuur de opgehaalde waarden naar de webpagina
+        return render_template('index.html', forecast=forecast, current=current, indoor=indoor)
 
 # De server zal zich herladen na elke wijzigingen
 if __name__ == '__main__':
     app.run(debug=True)
 ```
+
+> Let op! Er is nog geen data verstuurd vanuit de micro:bit.
+
+## Code on the micro:bit
+
+Tijd om de data vanuit de micro:bit te versturen naar de computer! We gaan dit simpelweg doen door een eindeloze loop aan te gaan waarbij de temperatuur om de 10 seconden word verzonden. Schrijf binnen de Mu editor de volgende code.
+
+```python
+import microbit from *
+
+while True:
+    print(temperature())
+    sleep(10000)
+```
+
+Zo, nu word de code verstuurd naar de computer. Natuurlijk moet dit alles nog in werking treden!
+
+## Run the code
+
+We beginnen in onze Mu editor. Daar drukken we de knop **Flash** in. Dit zorgt ervoor dat de code van de Mu editor wordt geplaatst op onze micro:bit. Zo is die klaar om de data te gaan versturen naar onze Raspberry Pi.
+
+![alt text](https://codewith.mu/img/en/tutorials/microbit_flash.gif "Mu editor")
+
+In Visual Studio Code gaan we de code runnen binnen de terminal. 2 commands moeten in deze volgorde uitgevoerd worden:
+
+```
+cd app
+python app.py
+```
+
+Dit zorgt ervoor dat de webserver opgestart zal worden. Als alles correct is verlopen zou je deze melding moeten krijgen.
+
+![alt text](https://miro.medium.com/max/2704/1*0_T47qY8ClYdxtuAtABH1w.png "terminal")
+
+De **running on** informatie is zeer belangrijk voor ons. Via deze url kan je de webpagina bezoeken. Als je deze link volgt, zou je volgend scherm moeten verkrijgen. Deze webpagina is opgemaakt uit **HTML, CSS en JS**. Dit zijn de basics voor webdevelopment. [Als je echt geïnteresseerd bent kan je binnen deze GitHub repositorie dan ook de HTML, CSS en JS files raadplegen.](https://github.com/jensderyckere/weatherstation)
+
+
+![alt text](https://i.ibb.co/564dzNh/Schermafbeelding-2020-10-15-om-18-49-48.png "window")
